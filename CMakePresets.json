@@ -1,0 +1,72 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 21,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "default",
+            "displayName": "Default (Homebrew Clang)",
+            "description": "Default build with Homebrew LLVM/Clang",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "/opt/homebrew/opt/llvm/bin/clang",
+                "CMAKE_CXX_COMPILER": "/opt/homebrew/opt/llvm/bin/clang++",
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "dev",
+            "displayName": "Development",
+            "description": "Development build with tests",
+            "inherits": "default",
+            "cacheVariables": {
+                "FHT_BUILD_TESTS": "ON",
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+            }
+        },
+        {
+            "name": "dev-optimize",
+            "displayName": "Development with Optimization",
+            "description": "Development build with tests and host optimization",
+            "inherits": "dev",
+            "cacheVariables": {
+                "FHT_OPTIMIZE_FOR_HOST": "ON"
+            }
+        },
+        {
+            "name": "appleclang",
+            "displayName": "AppleClang",
+            "description": "Build with system AppleClang",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "default",
+            "configurePreset": "default"
+        },
+        {
+            "name": "dev",
+            "configurePreset": "dev"
+        },
+        {
+            "name": "dev-optimize",
+            "configurePreset": "dev-optimize"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "default",
+            "configurePreset": "dev",
+            "output": {
+                "outputOnFailure": true
+            }
+        }
+    ]
+}

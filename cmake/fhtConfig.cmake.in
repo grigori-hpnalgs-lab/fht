@@ -1,0 +1,17 @@
+@PACKAGE_INIT@
+
+# FHT - Fast Hadamard Transform Library
+#
+# This file is part of the FHT CMake package configuration.
+#
+# Usage:
+#   find_package(fht REQUIRED)
+#   target_link_libraries(myapp PRIVATE fht::fht)
+#
+# Or with CPM:
+#   CPMAddPackage("gh:yourorg/fht@1.0.0")
+#   target_link_libraries(myapp PRIVATE fht::fht)
+
+include("${CMAKE_CURRENT_LIST_DIR}/fhtTargets.cmake")
+
+check_required_components(fht)

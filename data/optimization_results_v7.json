@@ -1,0 +1,104 @@
+{
+  "4": {
+    "log_n": 4,
+    "best_time": 0.00488281,
+    "best_desc": "iterative,r4",
+    "best_params": {
+      "strategy": "iterative",
+      "threshold": 14,
+      "radix": 4,
+      "unroll_factor": 1,
+      "prefetch_distance": 0,
+      "prefetch_hint": 3,
+      "max_registers": 16
+    },
+    "code_size": 2909,
+    "num_configs_tested": 4
+  },
+  "8": {
+    "log_n": 8,
+    "best_time": 0.0,
+    "best_desc": "recursive,th=6",
+    "best_params": {
+      "strategy": "recursive",
+      "threshold": 6,
+      "radix": 2,
+      "unroll_factor": 1,
+      "prefetch_distance": 0,
+      "prefetch_hint": 3,
+      "max_registers": 16
+    },
+    "code_size": 7186,
+    "num_configs_tested": 12
+  },
+  "12": {
+    "log_n": 12,
+    "best_time": 1.04688,
+    "best_desc": "recursive,th=6,u2",
+    "best_params": {
+      "strategy": "recursive",
+      "threshold": 6,
+      "radix": 2,
+      "unroll_factor": 2,
+      "prefetch_distance": 0,
+      "prefetch_hint": 3,
+      "max_registers": 16
+    },
+    "code_size": 10901,
+    "num_configs_tested": 20
+  },
+  "16": {
+    "log_n": 16,
+    "best_time": 22.0207,
+    "best_desc": "recursive,th=14,r4",
+    "best_params": {
+      "strategy": "recursive",
+      "threshold": 14,
+      "radix": 4,
+      "unroll_factor": 1,
+      "prefetch_distance": 0,
+      "prefetch_hint": 3,
+      "max_registers": 16
+    },
+    "code_size": 13501,
+    "num_configs_tested": 56
+  },
+  "20": {
+    "log_n": 20,
+    "best_time": 550.167,
+    "best_desc": "recursive,th=6,u2",
+    "best_params": {
+      "strategy": "recursive",
+      "threshold": 6,
+      "radix": 2,
+      "unroll_factor": 2,
+      "prefetch_distance": 0,
+      "prefetch_hint": 3,
+      "max_registers": 16
+    },
+    "code_size": 17035,
+    "num_configs_tested": 49
+  },
+  "24": {
+    "log_n": 24,
+    "best_time": 11120.2,
+    "best_desc": "recursive,th=6,r4,u2",
+    "best_params": {
+      "strategy": "recursive",
+      "threshold": 6,
+      "radix": 4,
+      "unroll_factor": 2,
+      "prefetch_distance": 0,
+      "prefetch_hint": 3,
+      "max_registers": 16
+    },
+    "code_size": 21625,
+    "num_configs_tested": 53
+  },
+  "_metadata": {
+    "generated_at": "2026-01-22T13:30:47.517080",
+    "generator": "optimize_v7_grid.py",
+    "version": "v7",
+    "precision": "float"
+  }
+}
