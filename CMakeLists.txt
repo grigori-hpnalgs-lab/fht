@@ -12,7 +12,12 @@ include(CMakePackageConfigHelpers)
 # Options
 option(FHT_OPTIMIZE_FOR_HOST "Re-optimize NEON kernels for this host (ARM only)" OFF)
 option(FHT_BUILD_TESTS "Build test programs" OFF)
-set(FHT_OPTIMIZATION_SIZES "4;8;12;16;20;24" CACHE STRING
+# Generate list from 2 to 30
+set(FHT_OPTIMIZATION_SIZES "")
+foreach(i RANGE 2 30)
+    list(APPEND FHT_OPTIMIZATION_SIZES ${i})
+endforeach()
+set(FHT_OPTIMIZATION_SIZES ${FHT_OPTIMIZATION_SIZES} CACHE STRING
     "Sizes (log_n) to optimize when FHT_OPTIMIZE_FOR_HOST is ON")
 
 # Header-only interface library
@@ -46,7 +51,6 @@ if(CMAKE_SYSTEM_PROCESSOR MATCHES "^(aarch64|arm64|ARM64)$")
                 ${CMAKE_CURRENT_SOURCE_DIR}/scripts/optimize_v7_grid.py
                 --sizes ${FHT_OPTIMIZATION_SIZES}
                 --output ${FHT_OPT_HEADER}
-                --quick
                 --no-compare
             DEPENDS
                 ${CMAKE_CURRENT_SOURCE_DIR}/scripts/optimize_v7_grid.py
