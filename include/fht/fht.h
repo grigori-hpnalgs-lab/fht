@@ -79,18 +79,7 @@ static inline int fht_double_oop(double *in, double *out, int log_n) {
     return fht_neon_v7_double(out, log_n);
 }
 
-#elif defined(FHT_PLATFORM_X86)
-
-/* x86 SSE/AVX Implementation (from FFHT) */
-#include "x86/fht_x86.h"
-
-#else
-
-#error "FHT: No implementation available for this platform"
-
-#endif /* Platform selection */
-
-/* C++ overloads for convenience */
+/* C++ overloads for ARM */
 #ifdef __cplusplus
 static inline int fht(float *buf, int log_n) {
     return fht_float(buf, log_n);
@@ -108,5 +97,16 @@ static inline int fht(double *in, double *out, int log_n) {
     return fht_double_oop(in, out, log_n);
 }
 #endif /* __cplusplus */
+
+#elif defined(FHT_PLATFORM_X86)
+
+/* x86 SSE/AVX Implementation (from FFHT) - includes C++ overloads */
+#include "x86/fht_x86.h"
+
+#else
+
+#error "FHT: No implementation available for this platform"
+
+#endif /* Platform selection */
 
 #endif /* FHT_H */

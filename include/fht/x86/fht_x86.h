@@ -13,19 +13,10 @@
 
 #define FHT_HEADER_ONLY
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+/* Include the implementation first - defines fht_float, fht_double, fht_float_oop, fht_double_oop */
+#include "fht_impl.h"
 
-int fht_float(float *buf, int log_n);
-int fht_double(double *buf, int log_n);
-int fht_float_oop(float *in, float *out, int log_n);
-int fht_double_oop(double *in, double *out, int log_n);
-
-#ifdef __cplusplus
-}
-#endif
-
+/* C++ overloads for convenience */
 #ifdef __cplusplus
 static inline int fht(float *buf, int log_n) {
     return fht_float(buf, log_n);
@@ -43,7 +34,5 @@ static inline int fht(double *buf, double *out, int log_n) {
     return fht_double_oop(buf, out, log_n);
 }
 #endif
-
-#include "fht_impl.h"
 
 #endif /* FHT_X86_H */
