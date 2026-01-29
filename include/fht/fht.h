@@ -39,28 +39,39 @@
  */
 #if defined(__CUDACC__) && defined(FHT_PLATFORM_ARM)
 
-static inline int fht_float(float *buf, int log_n) {
+__attribute__((unused))
+int fht_float(float *buf, int log_n) {
     (void)buf; (void)log_n;
     return 0;
 }
-static inline int fht_double(double *buf, int log_n) {
+
+__attribute__((unused))
+int fht_double(double *buf, int log_n) {
     (void)buf; (void)log_n;
     return 0;
 }
-static inline int fht_float_oop(float *in, float *out, int log_n) {
+
+__attribute__((unused))
+int fht_float_oop(float *in, float *out, int log_n) {
     (void)in; (void)out; (void)log_n;
     return 0;
 }
-static inline int fht_double_oop(double *in, double *out, int log_n) {
+
+__attribute__((unused))
+int fht_double_oop(double *in, double *out, int log_n) {
     (void)in; (void)out; (void)log_n;
     return 0;
 }
 
 #ifdef __cplusplus
-static inline int fht(float *buf, int log_n) { return fht_float(buf, log_n); }
-static inline int fht(double *buf, int log_n) { return fht_double(buf, log_n); }
-static inline int fht(float *in, float *out, int log_n) { return fht_float_oop(in, out, log_n); }
-static inline int fht(double *in, double *out, int log_n) { return fht_double_oop(in, out, log_n); }
+__attribute__((unused))
+int fht(float *buf, int log_n) { return 0; }
+__attribute__((unused))
+int fht(double *buf, int log_n) { return 0; }
+__attribute__((unused))
+int fht(float *in, float *out, int log_n) { return 0; }
+__attribute__((unused))
+int fht(double *in, double *out, int log_n) { return 0; }
 #endif
 
 #else /* Real implementations */
