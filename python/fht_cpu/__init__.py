@@ -24,7 +24,7 @@ if _sys.platform == "darwin":
     for _p in _LIBOMP_SEARCH:
         if _os.path.isfile(_p):
             try:
-                _ctypes.CDLL(_p)
+                _ctypes.CDLL(_p, mode=_ctypes.RTLD_GLOBAL)
                 _loaded = True
                 break
             except OSError:
