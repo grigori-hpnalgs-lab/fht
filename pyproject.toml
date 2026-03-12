@@ -46,4 +46,4 @@ environment = { MACOSX_DEPLOYMENT_TARGET = "14.0" }
 # Don't bundle libomp — numpy already ships it, bundling a second copy causes
 # "libomp already initialized" crashes. We link dynamically and rely on
 # numpy's (or the system's) libomp at runtime.
-repair-command = "delocate-wheel --require-archs {delocate_archs} -w {dest_dir} -v --exclude libomp.dylib {wheel}"
+repair-wheel-command = "delocate-wheel --require-archs {delocate_archs} -w {dest_dir} -v --exclude libomp.dylib {wheel}"
