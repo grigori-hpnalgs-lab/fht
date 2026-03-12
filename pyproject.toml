@@ -42,3 +42,4 @@ test-command = "pytest {project}/python/tests/ -v"
 
 [tool.cibuildwheel.macos]
 before-build = "brew install libomp"
+environment = { MACOSX_DEPLOYMENT_TARGET = "15.0" }
