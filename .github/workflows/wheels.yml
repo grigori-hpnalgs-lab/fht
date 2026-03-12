@@ -7,6 +7,9 @@ on:
   push:
     tags: ["v*"]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     strategy:
@@ -17,9 +20,7 @@ jobs:
             cibw_archs: x86_64
           - os: ubuntu-24.04-arm
             cibw_archs: aarch64
-          - os: macos-13
-            cibw_archs: x86_64
-          - os: macos-14
+          - os: macos-15
             cibw_archs: arm64
     runs-on: ${{ matrix.os }}
     name: wheels (${{ matrix.os }}, ${{ matrix.cibw_archs }})
@@ -27,7 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - uses: pypa/cibuildwheel@v2.21
+      - uses: pypa/cibuildwheel@v3.4
         env:
           CIBW_ARCHS: ${{ matrix.cibw_archs }}
 
