@@ -1,0 +1,15 @@
+[build-system]
+requires = ["scikit-build-core>=0.9", "nanobind>=2.0"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "fht"
+version = "1.0.0"
+description = "Fast Hadamard Transform with SIMD acceleration"
+requires-python = ">=3.10"
+dependencies = ["numpy"]
+license = {text = "MIT"}
+
+[tool.scikit-build]
+build-dir = "build/{wheel_tag}"
+minimum-version = "0.9"

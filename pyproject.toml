@@ -1,0 +1,29 @@
+[build-system]
+requires = ["scikit-build-core>=0.9", "nanobind>=2.0"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "fht"
+version = "1.0.0"
+description = "Fast Hadamard Transform with SIMD acceleration"
+requires-python = ">=3.10"
+dependencies = ["numpy"]
+license = {text = "MIT"}
+readme = "README.md"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: C++",
+    "Topic :: Scientific/Engineering",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourorg/fht"
+
+[tool.scikit-build]
+cmake.source-dir = "python"
+build-dir = "build/{wheel_tag}"
+minimum-version = "0.9"
+wheel.packages = ["python/fht"]

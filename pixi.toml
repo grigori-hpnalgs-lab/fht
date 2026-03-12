@@ -1,0 +1,26 @@
+[project]
+name = "fht-python"
+channels = ["conda-forge"]
+platforms = ["osx-arm64", "linux-64", "osx-64"]
+
+[dependencies]
+python = ">=3.10"
+numpy = "*"
+pip = "*"
+cmake = "*"
+ninja = "*"
+nanobind = ">=2.0"
+scikit-build-core = ">=0.9"
+compilers = "*"
+pytest = "*"
+
+[target.osx.dependencies]
+llvm-openmp = "*"
+
+[target.linux.dependencies]
+libgomp = "*"
+
+[tasks]
+build = "pip install -e . --no-build-isolation -v"
+test = "pytest python/tests/ -v"
+wheel = "pip wheel . -w dist/ --no-build-isolation"
