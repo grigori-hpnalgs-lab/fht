@@ -41,6 +41,4 @@ test-command = "pytest {project}/python/tests/ -v"
 # OpenMP is available by default in manylinux
 
 [tool.cibuildwheel.macos]
-# Install OpenMP runtime for macOS
 before-build = "brew install libomp"
-environment = { CMAKE_PREFIX_PATH = "/opt/homebrew/opt/libomp;/usr/local/opt/libomp" }
