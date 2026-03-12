@@ -1,0 +1,64 @@
+name: Build wheels
+
+on:
+  # Manual trigger from GitHub UI
+  workflow_dispatch:
+  # Auto on version tags
+  push:
+    tags: ["v*"]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            cibw_archs: x86_64
+          - os: ubuntu-24.04-arm
+            cibw_archs: aarch64
+          - os: macos-13
+            cibw_archs: x86_64
+          - os: macos-14
+            cibw_archs: arm64
+    runs-on: ${{ matrix.os }}
+    name: wheels (${{ matrix.os }}, ${{ matrix.cibw_archs }})
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pypa/cibuildwheel@v2.21
+        env:
+          CIBW_ARCHS: ${{ matrix.cibw_archs }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wheels-${{ matrix.os }}-${{ matrix.cibw_archs }}
+          path: wheelhouse/*.whl
+
+  # Build the source distribution
+  sdist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pipx run build --sdist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sdist
+          path: dist/*.tar.gz
+
+  # Publish to PyPI (only on tag push)
+  publish:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [build, sdist]
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # trusted publishing
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
