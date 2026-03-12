@@ -4,3 +4,6 @@ scripts/measurements/run_double
 scripts/measurements/run_float
 scripts/measurements/to_run.h
 dist/
+.idea/
+cmake-build-debug/
+cmake-build-release/
